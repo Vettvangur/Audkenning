@@ -29,7 +29,7 @@ Authorization: apiKey <actualApiKeyHere>
 - `authType` (string, enum): Authentication type, can be "sim" or "app". Default: "sim".
 - `phoneNumberOrSsn` (string): Phone number or SSN of the user. **Required**.
 - `requestingApplication` (string): Alias/Name/ID of the requesting application. **Required**.
-- `Challenge` (string): Optional challenge. A 4-digit (or 4 emojis) code is created if not provided.
+- `Challenge` (string): Optional challenge. A 4-digit (or 4 emojis) code is created if not provided. This only works if the authtype is "sim", app authentication always creates its own challenge code.
 - `useEmojiChallenge` (string): Default: `true`.
 - `simChallengePrefix` (string): Default: `""`.
 - `appAdditionalMessage` (string): Default: `""`.
@@ -279,6 +279,7 @@ Please contact [Vettvangur](mailto:vettvangur@vettvangur.is) if you're having tr
 ## `Choose your method(s)`
 ### `AuthorizeWithCodeAsync`
 - Used for authentication with `challenge` code. <br/>
+- Callenge code is only applicable if the authtype is "sim". For authtype "app" a challenge code will be generated for you. <br/>
 - This method takes care of `step 1` from the high-level explanation above. <br/>
 - Used in cohesion with `GetAuthorizationStatusAsync` or `PollAuthorizationStatusAsync`.
 
